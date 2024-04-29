@@ -7,7 +7,7 @@ import {
   installDependencies,
   installRedux,
   createWebpackConfig,
-} from "./common-commands";
+} from "./common-commands.js";
 
 const TEMPLATE_DIR = path.resolve(__dirname, "./boilerplate");
 
