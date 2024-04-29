@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "create-lavish-app": "./cli.js"
+    "create-lavish-app": "./cli.mjs"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
