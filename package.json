@@ -3,6 +3,7 @@
   "version": "1.6.0",
   "description": "A Webpack template for React that supports Module Federation and TypeScript",
   "main": "cli.mjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
