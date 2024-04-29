@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const fs = require("fs-extra");
-const path = require("path");
-const inquirer = require("inquirer");
+import fs from "fs-extra";
+import path from "path";
+import inquirer from "inquirer";
 
 const TEMPLATE_DIR = path.resolve(__dirname, "./boilerplate");
 
