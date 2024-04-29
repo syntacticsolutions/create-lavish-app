@@ -1,4 +1,17 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const moduleRules = [];
+
+function isLoaderAvailable(loaderName) {
+  try {
+    require.resolve(loaderName);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 // Sass
 if (isLoaderAvailable('sass-loader')) {
   moduleRules.push({
@@ -36,7 +49,6 @@ const devConfig = {
       },
     },
   },
-
   module: {
     rules: moduleRules,
   },

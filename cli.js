@@ -8,11 +8,17 @@ import {
   installRedux,
   createWebpackConfig,
 } from "./common-commands.js";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const TEMPLATE_DIR = path.resolve(__dirname, "./boilerplate");
 
-async function createProject({ projectName, useRedux, mfeType }) {
+async function createProject({ projectName, useRedux, mfeType, mfePort }) {
   const targetDir = path.resolve(process.cwd(), projectName);
+
+  console.log({ targetDir });
   if (fs.existsSync(targetDir)) {
     console.error(`A folder named ${projectName} already exists.`);
     return;
@@ -30,7 +36,12 @@ async function createProject({ projectName, useRedux, mfeType }) {
     await installRedux(targetDir);
   }
 
-  await createWebpackConfig(mfeType, path.join(targetDir, "/webpack/config"));
+  await createWebpackConfig(
+    mfeType,
+    mfePort,
+    projectName,
+    path.join(targetDir, "/webpack/config")
+  );
 
   console.log("Project created successfully!");
   console.log(`Navigate into the project directory and run npm install`);
@@ -42,7 +53,7 @@ async function main() {
       type: "input",
       name: "projectName",
       message: "What is the name of your project?",
-      default: "my-new-project",
+      default: "my-lavish-project",
     },
     {
       type: "list",
@@ -64,8 +75,11 @@ async function main() {
       message: "Do you need redux for your project?",
     },
   ]);
-
-  await createProject(answers);
+  try {
+    await createProject(answers);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 main();

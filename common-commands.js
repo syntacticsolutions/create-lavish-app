@@ -1,6 +1,10 @@
 import fs from "fs";
 import path from "path";
 import { spawn } from "child_process";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function createPackageJson(projectName) {
   const packageJson = {
@@ -18,17 +22,24 @@ export async function createPackageJson(projectName) {
     license: "ISC",
   };
 
-  await fs.writeJson(
-    path.join(path.resolve(process.cwd(), projectName), "package.json"),
-    packageJson,
-    { spaces: 2 }
-  );
+  return new Promise((resolve, reject) => {
+    fs.writeFile(
+      path.join(path.resolve(process.cwd(), projectName), "package.json"),
+      JSON.stringify(packageJson, null, 2),
+      (err) => {
+        if (err) reject(err);
+        else resolve();
+      }
+    );
+  });
 }
 
 export async function installDependencies(projectPath) {
-  const dependencies = ["react", "react-dom", "lodash"];
-  const devDependencies = [
-    "typescript",
+  const dependencies = [
+    "react",
+    "react-dom",
+    "lodash",
+    "mini-css-extract-plugin",
     "webpack",
     "webpack-cli",
     "babel-loader",
@@ -36,9 +47,15 @@ export async function installDependencies(projectPath) {
     "@babel/preset-env",
     "@babel/preset-react",
     "@babel/preset-typescript",
+    "typescript",
+  ];
+  const devDependencies = [
+    "webpack-dev-server",
     "@types/lodash",
     "@types/react",
     "@types/react-dom",
+    "clean-webpack-plugin",
+    "html-webpack-plugin",
   ];
 
   // Running 'npm install' for dependencies
@@ -89,7 +106,7 @@ export function runNpmInstall(projectPath, packages, isDev) {
   });
 }
 
-export async function createWebpackConfig(mfeType, path) {
+export async function createWebpackConfig(mfeType, mfePort, mfeName, path) {
   const content = `
         export default {
             MFE_TYPE: ${mfeType},
