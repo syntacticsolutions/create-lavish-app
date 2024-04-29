@@ -1,6 +1,6 @@
 {
   "name": "create-lavish-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Webpack template for React that supports Module Federation and TypeScript",
   "main": "cli.js",
   "scripts": {
@@ -11,5 +11,9 @@
   "license": "ISC",
   "bin": {
     "create-lavish-app": "./cli.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.20"
   }
 }
