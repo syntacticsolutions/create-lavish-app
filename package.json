@@ -1,7 +1,7 @@
 {
-  "name": "lavish-mfe-template",
+  "name": "create-lavish-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Webpack template for React that supports Module Federation and TypeScript",
   "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
