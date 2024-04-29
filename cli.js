@@ -2,6 +2,12 @@
 import fs from "fs-extra";
 import path from "path";
 import inquirer from "inquirer";
+import {
+  createPackageJson,
+  installDependencies,
+  installRedux,
+  createWebpackConfig,
+} from "./common-commands";
 
 const TEMPLATE_DIR = path.resolve(__dirname, "./boilerplate");
 
