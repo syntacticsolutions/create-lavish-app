@@ -1,0 +1,24 @@
+{
+  "presets": [
+    ["@babel/preset-env", { "targets": { "node": "current" } }],
+    ["@babel/preset-react", { "runtime": "automatic" }],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "lodash",
+    [
+      "module-resolver",
+      {
+        "root": "./",
+        "alias": {
+          "@components": "./src/components",
+          "@pages": "./src/pages",
+          "@hooks": "./src/hooks",
+          "@service": "./src/service",
+          "@utils": "./src/utils",
+          "@store": "./src/store"
+        }
+      }
+    ]
+  ]
+}
