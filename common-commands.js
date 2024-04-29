@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const { spawn } = require('child_process');
+import fs from "fs";
+import path from "path";
+import { spawn } from "child_process";
 
 export async function createPackageJson(projectName) {
   const packageJson = {
@@ -26,11 +26,7 @@ export async function createPackageJson(projectName) {
 }
 
 export async function installDependencies(projectPath) {
-  const dependencies = [
-    "react",
-    "react-dom",
-    "lodash",
-  ];
+  const dependencies = ["react", "react-dom", "lodash"];
   const devDependencies = [
     "typescript",
     "webpack",
@@ -66,6 +62,8 @@ export async function installRedux(projectPath) {
   // Running 'npm install' for devDependencies
   console.log("Installing devDependencies...");
   await runNpmInstall(projectPath, devDependencies, true);
+
+  // TODO Add the store
 }
 
 export function runNpmInstall(projectPath, packages, isDev) {
