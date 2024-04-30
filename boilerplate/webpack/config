@@ -1,0 +1,7 @@
+
+        export default {
+            MFE_TYPE: Shell,
+            MFE_PORT: 3000,
+            MFE_NAME: my-lavish-project,
+        }
+    

@@ -47,7 +47,11 @@ export async function installDependencies(projectPath) {
     "@babel/preset-env",
     "@babel/preset-react",
     "@babel/preset-typescript",
+    "babel-plugin-lodash",
+    "babel-plugin-module-resolver",
     "typescript",
+    "style-loader",
+    "css-loader",
   ];
   const devDependencies = [
     "webpack-dev-server",
@@ -108,12 +112,12 @@ export function runNpmInstall(projectPath, packages, isDev) {
 
 export async function createWebpackConfig(mfeType, mfePort, mfeName, path) {
   const content = `
-        export default {
-            MFE_TYPE: ${mfeType},
-            MFE_PORT: ${mfePort},
-            MFE_NAME: ${mfeName},
-        }
-    `;
+    module.exports = {
+        MFE_TYPE: '${mfeType}',
+        MFE_PORT: ${mfePort},
+        MFE_NAME: '${mfeName}',
+    }
+`;
   return new Promise((resolve) => {
     fs.writeFile(path, content, {}, resolve);
   });

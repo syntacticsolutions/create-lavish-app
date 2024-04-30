@@ -1,5 +1,9 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('lodash/merge');
+const common = require('./webpack.common');
+const config = require('./config');
+const path = require('path');
 
 const moduleRules = [];
 
@@ -36,9 +40,13 @@ if (isLoaderAvailable('stylus-loader')) {
   });
 }
 
-const devConfig = {
+module.exports = merge(common, {
   mode: 'development',
   devServer: {
+    port: config.MFE_PORT,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     hot: true,
     historyApiFallback: true,
     client: {
@@ -61,4 +69,4 @@ const devConfig = {
       favicon: './public/favicon.ico',
     }),
   ],
-};
+});

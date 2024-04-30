@@ -25,7 +25,7 @@ const moduleRules = [
 
 
 module.exports = {
-  entry: './index.tsx',
+  entry: './index.ts',
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].[contenthash].js",
