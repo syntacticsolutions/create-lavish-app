@@ -42,7 +42,7 @@ if (isLoaderAvailable('stylus-loader')) {
 const prodConfig = {
   mode: 'production',
   plugins: [
-    config.mfeType === 'Container' ? containerPlugin : childPlugin,
+    config.MFE_TYPE === 'Container' ? containerPlugin : childPlugin,
     new MiniCssExtractPlugin({
       filename: './dist/styles/[name].css',
     }),
