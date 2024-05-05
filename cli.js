@@ -40,7 +40,7 @@ async function createProject({ projectName, useRedux, mfeType, mfePort }) {
     mfeType,
     mfePort,
     projectName,
-    path.join(targetDir, "/webpack/config")
+    path.join(targetDir, "/webpack/config.js")
   );
 
   console.log("Project created successfully!");
